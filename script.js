@@ -6,23 +6,37 @@ var todoCountSpan = document.querySelector("#todo-count");
 var todos = ["Learn HTML", "Learn CSS", "Learn JavaScript"];
 
 
-//04-Stu_Render_Todos START
+//04-Stu_Render_Todos START & 06-Stu_Complete_Todos START
 
+//04
 renderToDo()
 
+//04
 function renderToDo (){
+    //04
+    todoList.innerHTML = ""
+    //04
     for ( var i = 0; i < todos.length; i++){
-        //create li element
+        //04 create li element
         var li = document.createElement("li")
-        //add todo text to li 
+        //04 add todo text to li 
         li.innerText = todos[i]
-        //append li to todoList
+        //06 create a new attribute on the li variable
+        li.setAttribute("data-index", i)
+        //06 create complete button for each li list item
+        var button = document.createElement("button")
+        //06 set the inner text of the button to be "Complete"
+        button.textContent = "Complete"
+        //04 append li to todoList
         todoList.appendChild(li)
+        //06 append the button to the list
+        li.appendChild(button)
     }
+    //04
     todoCountSpan.innerText = todos.length
 }
 
-//04-Stu_Render_Todos END
+//04-Stu_Render_Todos END & 06-Stu_Complete_Todos END  
 
 //05-Stu_Add_Todos START
 
@@ -34,8 +48,16 @@ todoForm.addEventListener("submit", function(event){
     }
     todos.push(todoText)
     todoInput.value = ""
-    todoList.innerHTML = ""
+
     renderToDo()
 })
 
 //05-Stu_Add_Todos END
+
+// 06-Stu_Complete_Todos START
+
+todoList.addEventListener("click", function(event){
+    
+})
+
+//06-Stu_Complete_Todos END  
