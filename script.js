@@ -5,8 +5,12 @@ var todoCountSpan = document.querySelector("#todo-count");
 
 var todos = ["Learn HTML", "Learn CSS", "Learn JavaScript"];
 
+
 //04-Stu_Render_Todos START
-function renderToDo (event){
+
+renderToDo()
+
+function renderToDo (){
     for ( var i = 0; i < todos.length; i++){
         //create li element
         var li = document.createElement("li")
@@ -18,6 +22,20 @@ function renderToDo (event){
     todoCountSpan.innerText = todos.length
 }
 
-renderToDo()
-
 //04-Stu_Render_Todos END
+
+//05-Stu_Add_Todos START
+
+todoForm.addEventListener("submit", function(event){
+    event.preventDefault()
+    var todoText = todoInput.value.trim()
+    if (todoText === ""){
+        return;
+    }
+    todos.push(todoText)
+    todoInput.value = ""
+    todoList.innerHTML = ""
+    renderToDo()
+})
+
+//05-Stu_Add_Todos END
