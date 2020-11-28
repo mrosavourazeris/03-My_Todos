@@ -57,7 +57,13 @@ todoForm.addEventListener("submit", function(event){
 // 06-Stu_Complete_Todos START
 
 todoList.addEventListener("click", function(event){
-    
+    var element = event.target
+
+    if(element.matches("button") === true){
+        var index = element.parentElement.getAttribute("data-index")
+        todos.splice(index, 1)
+    }
+    renderToDo()
 })
 
 //06-Stu_Complete_Todos END  
