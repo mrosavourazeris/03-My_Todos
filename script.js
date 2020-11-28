@@ -3,7 +3,8 @@ var todoForm = document.querySelector("#todo-form");
 var todoList = document.querySelector("#todo-list");
 var todoCountSpan = document.querySelector("#todo-count");
 
-var todos = ["Learn HTML", "Learn CSS", "Learn JavaScript"];
+//07
+var todos = JSON.parse(localStorage.getItem("todos"))
 
 
 //04-Stu_Render_Todos START & 06-Stu_Complete_Todos START
@@ -38,17 +39,26 @@ function renderToDo (){
 
 //04-Stu_Render_Todos END & 06-Stu_Complete_Todos END  
 
-//05-Stu_Add_Todos START
+//05-Stu_Add_Todos START & 07-Stu_Local_Storage_Todos START
 
+//05
 todoForm.addEventListener("submit", function(event){
+    //05
     event.preventDefault()
+    //05
     var todoText = todoInput.value.trim()
+    //05
     if (todoText === ""){
+        //05
         return;
     }
+    //05
     todos.push(todoText)
+    //05
     todoInput.value = ""
-
+    //07
+    localStorage.setItem("todos", JSON.stringify(todos))
+    //05
     renderToDo()
 })
 
@@ -56,14 +66,21 @@ todoForm.addEventListener("submit", function(event){
 
 // 06-Stu_Complete_Todos START
 
+//06
 todoList.addEventListener("click", function(event){
+    //06
     var element = event.target
-
-    if(element.matches("button") === true){
+    //06    
+    if(element.matches("button")){
+        //06
         var index = element.parentElement.getAttribute("data-index")
+        //06
         todos.splice(index, 1)
     }
+    //06
     renderToDo()
+    //07
+    localStorage.setItem("todos", JSON.stringify(todos))
 })
 
-//06-Stu_Complete_Todos END  
+//06-Stu_Complete_Todos END & 07-Stu_Local_Storage_Todos END
